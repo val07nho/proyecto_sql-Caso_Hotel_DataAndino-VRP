@@ -118,20 +118,6 @@ Las recomendaciones son propuestas para evaluar. El proyecto no mide todavía el
 | Databricks Jobs | Orquestación secuencial de notebooks |
 | GitHub | Versionado y documentación |
 
-Las respuestas a los **20 ejercicios** se desarrollaron en SQL. Python se utilizó únicamente para la carga inicial.
-
-**Conceptos SQL utilizados:**
-
-- Creación, inserción, actualización y eliminación de datos.
-- Filtros con `WHERE`, `LIKE` y `BETWEEN`.
-- Agregaciones con `COUNT`, `SUM` y `AVG`.
-- Segmentación con `CASE WHEN`.
-- Agrupación y ordenamiento de resultados.
-- Conversión de tipos y construcción de fechas.
-- Funciones `TO_DATE`, `DATE_SUB`, `DATEDIFF`, `ROUND` y `CEIL`.
-- `LEFT JOIN`, `INNER JOIN`, `FULL OUTER JOIN` y `RIGHT JOIN`.
-- Validación de unicidad en las claves utilizadas para los cruces.
-
 ## 📁 Organización del proyecto
 
 Los notebooks se encuentran en la carpeta [`Querys/`](./Querys/) y cubren las siguientes etapas:
@@ -159,30 +145,6 @@ Se configuró un Job con las siguientes dependencias:
 Cada tarea depende de la finalización exitosa de la anterior. Se verificó una ejecución completa con las cinco tareas en estado **Succeeded**.
 
 Para evitar acumulaciones al repetir el proceso, el catálogo `tb_paises` se recrea antes de insertar sus registros. La comprobación posterior debe mostrar **177 filas y 177 códigos distintos**.
-
-## 🧹 Criterios de preparación y calidad
-
-- Se conservó `hotel_bookings` como tabla de origen y se utilizó `tb_reservas` para el análisis.
-- Las modificaciones de bebés y la eliminación de precios cero se aplicaron únicamente a `tb_reservas_prueba`.
-- Se construyó `arrival_date` a partir del año, mes y día de llegada.
-- `reservation_status_date` se interpretó con el formato `d/M/yy`.
-- Para las cancelaciones tardías, se comprobó que no existieran diferencias negativas entre llegada y cancelación.
-- Se verificó la unicidad de `tb_paises.cod_pais` para evitar multiplicar reservas durante los JOINs.
-- Se conservaron las correspondencias `CN` y `CHN` con China, y `TMP` con Timor Oriental.
-
-Se identificaron **cuatro reservas con `children` nulo y `babies = 0`**. La regla del ejercicio las clasifica como “Sin Hijos”; se documentó esta limitación y su impacto mínimo sobre la comparación.
-
-## 🧪 Simulaciones de vendedores y facturas
-
-El dataset original no contiene identificadores de reserva, asignaciones de vendedores ni facturas.
-
-Para demostrar los ejercicios de `FULL OUTER JOIN` y `RIGHT JOIN`, se crearon tablas con **datos ficticios identificados como simulación**:
-
-- `tb_reservas_simuladas`
-- `tb_vendedores`
-- `tb_facturas`
-
-Estas tablas permiten representar reservas sin vendedor, vendedores sin reservas y facturas sin una reserva coincidente. **No se utilizaron para calcular los indicadores ni las conclusiones económicas del hotel.**
 
 ## ▶️ Cómo reproducir el proyecto
 
